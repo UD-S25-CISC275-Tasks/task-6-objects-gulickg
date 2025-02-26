@@ -80,20 +80,16 @@ export function toShortForm(question: Question): string {
  * Check the unit tests for more examples of what this looks like!
  */
 export function toMarkdown(question: Question): string {
-    let answer = "# " + question.name + "\n" + question.body + "\n";
-    console.log("testing");
-    if (question.type === "multiple_choice_question") {
-        console.log("testing2");
-        const combOptions = question.options.map(
-            (option: string) => "- " + option + "\n",
-        );
+    let answer = "# " + question.name + "\n" + question.body;
+    let combOptions = "";
+    if (question.type == "multiple_choice_question") {
+        answer += "\n";
+        combOptions = question.options
+            .map((option: string) => "- " + option)
+            .join("\n");
         return answer + combOptions;
-    } /*else {
-        for (let i = 0; i < question.options.length; i++) {
-            answer += "- " + question.options[i] + "\n";
-        }
-    } */
-    return answer;
+    }
+    return answer + combOptions;
 }
 
 /**
